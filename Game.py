@@ -7,9 +7,10 @@ class Game:
     __columns = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L']
 
     def initialize(self):
-        self.__board = np.zeros((10, 12), dtype=int)
-        self.__board[0][0] = 1
-        self.__board[0][1] = 2
+        self.__board = np.zeros((10, 12), dtype=str)
+        for i in range(0,len(self.__board)):
+            for j in range(0,len(self.__board[i])):
+                self.__board[i][j]=" "
 
     def print_board(self):
         print("   | ", end =' ')
@@ -18,7 +19,7 @@ class Game:
         counter = 0
         for columns in self.__board:
             print("\n", end='')
-            print("---------------------------------------------------------------------")
+            print("----------------------------------------------------------------------------")
             if counter !=0:
                 print(self.__rows[counter], end=' ')
                 print(" | ", end= ' ')
