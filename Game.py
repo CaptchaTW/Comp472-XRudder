@@ -2,22 +2,23 @@ import numpy as np
 
 
 class Game:
-    __board = None
+    board = None
     __rows = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
     __columns = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L']
 
     def initialize(self):
-        self.__board = np.zeros((10, 12), dtype=str)
-        for i in range(0,len(self.__board)):
-            for j in range(0,len(self.__board[i])):
-                self.__board[i][j]=" "
+        self.board = np.zeros((10, 12), dtype=str)
+        for i in range(0,len(self.board)):
+            for j in range(0,len(self.board[i])):
+                self.board[i][j]=" "
+        print("X-Rudder Game Begins")
 
     def print_board(self):
         print("   | ", end =' ')
         for members in self.__columns:
             print(members + "  | ", end=' ')
         counter = 0
-        for columns in self.__board:
+        for columns in self.board:
             print("\n", end='')
             print("----------------------------------------------------------------------------")
             if counter !=0:
