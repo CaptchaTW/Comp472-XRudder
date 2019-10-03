@@ -5,7 +5,7 @@ class Game:
     board = None
     __rows = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
     __columns = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L']
-
+    __move_counter = 0
     def initialize(self):
         self.board = np.zeros((10, 12), dtype=str)
         for i in range(0,len(self.board)):
@@ -31,3 +31,9 @@ class Game:
             for rows in columns:
                 print(rows, end=' ')
                 print(" | ",  end=' ')
+
+    def set_move_counter(self, total_move):
+        self.__move_counter = total_move
+
+    def get_move_counter(self):
+        return self.__move_counter
