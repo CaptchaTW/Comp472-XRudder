@@ -6,6 +6,8 @@ class Game:
     __rows = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
     __columns = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L']
     __move_counter = 0
+    __turn_counter = 0
+
     def initialize(self):
         self.board = np.zeros((10, 12), dtype=str)
         for i in range(0,len(self.board)):
@@ -37,3 +39,9 @@ class Game:
 
     def get_move_counter(self):
         return self.__move_counter
+
+    def get_turn_counter(self):
+        return self.__turn_counter
+
+    def set_turn_counter(self, turn_counter ):
+        self.__turn_counter = turn_counter

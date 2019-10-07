@@ -17,6 +17,7 @@ class Player:
         if self.board_input_checker(game, row, column):
             if game.board[row][column] == " ":
                 game.board[row][column] = self.__pieces_symbol
+                self.__pieces_counter += 1
                 return True
         return False
 
@@ -32,7 +33,10 @@ class Player:
         if new_row != old_row or new_column != old_column:
             if self.board_input_checker(game, old_row, old_column) and self.board_input_checker(game, new_row, new_column):
                 if self.__pieces_symbol == game.board[old_row][old_column]:
-                    if -1 <= new_row-old_row <=1 and -1 <= new_column-old_row < 1:
+                    if -1 <= new_row-old_row <= 1 and -1 <= new_column-old_column <= 1:
+                        game.board[old_row][old_column] = " "
+                        game.board[new_row][new_column] = self.__pieces_symbol
+                        self.__pieces_moved_counter += 1
                         return True
         return False
 
