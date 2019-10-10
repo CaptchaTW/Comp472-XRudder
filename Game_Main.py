@@ -33,6 +33,7 @@ def main():
                             print("Invalid Inputs, Please try again")
                         else:
                             if game1.check_winning_conditions(array_of_players[turn_counter],put_input[0],int(put_input[1:])):
+                                print(game1.print_board())
                                 print("Player " + str(turn_counter+1) + " is the Winner")
                                 sys.exit(0)
                             break

@@ -1,6 +1,7 @@
 import numpy as np
 from Player import Player
 
+
 class Game:
     board = None
     __rows = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
@@ -55,9 +56,60 @@ class Game:
                 if self.board[row+1][column-1] == player.get_player_symbol():
                     if self.board[row-1][column+1] == player.get_player_symbol():
                         if self.board[row-1][column-1] == player.get_player_symbol():
-                            if self.board[row][column+1] == " ":
-                                if self.board[row][column-1] == player.get_player_symbol():
-                                    return True
-
+                            if self.board[row][column+1] == " " or self.board[row][column+1] \
+                                    == player.get_player_symbol() or\
+                                    self.board[row][column-1] == " " or \
+                                    self.board[row][column-1] == player.get_player_symbol():
+                                return True
+        # top-right
+        if player.board_input_checker(self, column-2,row) and player.board_input_checker(self, column-1,row+1) \
+                and player.board_input_checker(self, column-2,row+2)and player.board_input_checker(self, column,row+2):
+            if self.board[row][column-2] == player.get_player_symbol():
+                if self.board[row+1][column-1] == player.get_player_symbol():
+                    if self.board[row+2][column-2] == player.get_player_symbol():
+                        if self.board[row+2][column] == player.get_player_symbol():
+                            if (self.board[row+1][column] == " " or self.board[row+1][column]
+                                == player.get_player_symbol()) or ( self.board[row+1][column-2]
+                                                                     == " " or self.board[row+1][column-2]
+                                                                     == player.get_player_symbol()):
+                                return True
+        # top left
+        if player.board_input_checker(self, column,row+2) and player.board_input_checker(self, column+1,row+1) \
+                and player.board_input_checker(self, column+2,row)and player.board_input_checker(self, column+2,row+2):
+            if self.board[row+2][column] == player.get_player_symbol():
+                if self.board[row+1][column+1] == player.get_player_symbol():
+                    if self.board[row][column+2] == player.get_player_symbol():
+                        if self.board[row+2][column+2] == player.get_player_symbol():
+                            if (self.board[row+1][column] == " " or self.board[row+1][column] ==
+                                player.get_player_symbol()) or ( self.board[row+1][column+2]
+                                                                  == " " or self.board[row+1][column-2]
+                                                                  == player.get_player_symbol()):
+                                return True
+        # bottom left
+        if player.board_input_checker(self, column, row - 2) and player.board_input_checker(self, column + 1, row - 1) \
+                and player.board_input_checker(self, column + 2, row) and player.board_input_checker(self, column + 2,
+                                                                                                     row - 2):
+            if self.board[row][column-2] == player.get_player_symbol():
+                if self.board[row-1][column+1] == player.get_player_symbol():
+                    if self.board[row][column + 2] == player.get_player_symbol():
+                        if self.board[row-2][column + 2] == player.get_player_symbol():
+                            if (self.board[row -1][column] == " " or self.board[row - 1][column] ==
+                                player.get_player_symbol()) or (self.board[row - 1][column + 2]
+                                                                == " " or self.board[row - 1][column - 2]
+                                                                == player.get_player_symbol()):
+                                return True
+        #bottom right
+        if player.board_input_checker(self, column, row - 2) and player.board_input_checker(self, column -1, row - 1) \
+                and player.board_input_checker(self, column - 2, row) and player.board_input_checker(self, column - 2,
+                                                                                                     row - 2):
+            if self.board[row - 2][column] == player.get_player_symbol():
+                if self.board[row - 1][column - 1] == player.get_player_symbol():
+                    if self.board[row][column -2] == player.get_player_symbol():
+                        if self.board[row-2][column -2] == player.get_player_symbol():
+                            if (self.board[row - 1][column] == " " or self.board[row - 1][column] ==
+                                player.get_player_symbol()) or (self.board[row - 1][column - 2]
+                                                                == " " or self.board[row - 1][column - 2]
+                                                                == player.get_player_symbol()):
+                                return True
         return False
 
