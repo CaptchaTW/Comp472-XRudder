@@ -2,6 +2,7 @@ from Game import Game
 from Player import Player
 import sys
 
+
 def main():
 
     game1 = Game()
@@ -35,6 +36,7 @@ def main():
                             if game1.check_winning_conditions(array_of_players[turn_counter],put_input[0],int(put_input[1:])):
                                 print(game1.print_board())
                                 print("Player " + str(turn_counter+1) + " is the Winner")
+                                input("Enter any key to end program")
                                 sys.exit(0)
                             break
                 break
@@ -57,6 +59,12 @@ def main():
                     except:
                         print("Invalid Input, Please try again")
                     else:
+                        if game1.check_winning_conditions(array_of_players[turn_counter], new_move_input[0],
+                                                          int(new_move_input[1:])):
+                            print(game1.print_board())
+                            print("Player " + str(turn_counter + 1) + " is the Winner")
+                            input("Enter any key to end program")
+                            sys.exit(0)
                         break
                 break
             else:
