@@ -50,3 +50,6 @@ class Player:
 
     def get_pieces_moved_counter(self):
         return self.__pieces_moved_counter
+
+    def get_player_symbol(self):
+        return self.__pieces_symbol

@@ -1,5 +1,5 @@
 import numpy as np
-
+from Player import Player
 
 class Game:
     board = None
@@ -45,3 +45,19 @@ class Game:
 
     def set_turn_counter(self, turn_counter ):
         self.__turn_counter = turn_counter
+
+    def check_winning_conditions(self,player, column, row):
+        row, column = Player.translate(column, row)
+        # middle
+        if player.board_input_checker(self, column+1,row+1) and player.board_input_checker(self, column+1,row-1) \
+                and player.board_input_checker(self, column-1,row-1)and player.board_input_checker(self, column-1,row+1):
+            if self.board[row+1][column+1] == player.get_player_symbol():
+                if self.board[row+1][column-1] == player.get_player_symbol():
+                    if self.board[row-1][column+1] == player.get_player_symbol():
+                        if self.board[row-1][column-1] == player.get_player_symbol():
+                            if self.board[row][column+1] == " ":
+                                if self.board[row][column-1] == player.get_player_symbol():
+                                    return True
+
+        return False
+

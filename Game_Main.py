@@ -1,5 +1,7 @@
 from Game import Game
 from Player import Player
+import sys
+
 def main():
 
     game1 = Game()
@@ -12,8 +14,10 @@ def main():
         print("Player " + str(turn_counter+1) + " turn")
         if game1.get_move_counter() == 15 and array_of_players[turn_counter] == 15:
             print("No more options left")
+            game1.set_turn_counter(game1.get_turn_counter() + 1)
+            continue
         while True:
-            move_choice =input("Choose your next move: \n1-Place a token \n"
+            move_choice = input("Choose your next move: \n1-Place a token \n"
                   "2-Move a token\n")
             if move_choice == "1":
                 if array_of_players[turn_counter].get_pieces_counter() == 15:
@@ -28,6 +32,9 @@ def main():
                         except:
                             print("Invalid Inputs, Please try again")
                         else:
+                            if game1.check_winning_conditions(array_of_players[turn_counter],put_input[0],int(put_input[1:])):
+                                print("Player " + str(turn_counter+1) + " is the Winner")
+                                sys.exit(0)
                             break
                 break
             elif move_choice == "2":
