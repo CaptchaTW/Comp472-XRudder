@@ -113,3 +113,37 @@ class Game:
                                 return True
         return False
 
+    def check_move_winning(self,player, column, row):
+        row,column = player.translate(column,row)
+        if player.board_input_checker(self, column, row - 1) and player.board_input_checker(self, column - 2, row - 1) \
+                and player.board_input_checker(self, column , row+1) and player.board_input_checker(self, column - 2,
+                                                                                                     row +1):
+            if self.board[row][column-2] == player.get_player_symbol():
+                if self.board[row+1][column] != " " or self.board[row+1][column] != player.get_player_symbol():
+                    if self.board[row -1][column] != " " or self.board[row -1][column] != player.get_player_symbol():
+                        if self.board[row  -1][column-2] != " " or self.board[row  -1][column-2] \
+                                != player.get_player_symbol():
+                            if self.board[row + 1][column - 2] != " " or self.board[row + 1][column - 2] \
+                                    != player.get_player_symbol():
+                                if self.board[row][column - 1] != " " or self.board[row ][column - 1] \
+                                        != player.get_player_symbol():
+                                    return True
+        if player.board_input_checker(self, column, row - 1) and player.board_input_checker(self, column + 2, row - 1) \
+                and player.board_input_checker(self, column, row + 1) and player.board_input_checker(self, column + 2,
+                                                                                                     row + 1):
+            if self.board[row][column + 2] == player.get_player_symbol():
+                if self.board[row + 1][column] != " " or self.board[row + 1][column] != player.get_player_symbol():
+                    if self.board[row - 1][column] != " " or self.board[row - 1][column] != player.get_player_symbol():
+                        if self.board[row - 1][column + 2] != " " or self.board[row - 1][column + 2] \
+                                != player.get_player_symbol():
+                            if self.board[row + 1][column + 2] != " " or self.board[row + 1][column + 2] \
+                                    != player.get_player_symbol():
+                                if self.board[row][column + 1] != " " or self.board[row][column + 1] \
+                                        != player.get_player_symbol():
+                                    return True
+        return False
+
+
+
+
+

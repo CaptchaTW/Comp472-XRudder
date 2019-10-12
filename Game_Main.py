@@ -65,12 +65,17 @@ def main():
                             print("Player " + str(turn_counter + 1) + " is the Winner")
                             input("Enter any key to end program")
                             sys.exit(0)
+                        if game1.check_move_winning(array_of_players[turn_counter], old_move_input[0],int(old_move_input[1])):
+                            print(game1.print_board())
+                            print("Player " + str((turn_counter+1)  %3)+ " is the Winner")
+                            input("Enter any key to end program")
+                            sys.exit(0)
                         break
                 break
             else:
                 print("Invalid Input, please choose a valid option")
         game1.print_board()
-        game1.set_move_counter(game1.get_move_counter()+array_of_players[turn_counter].get_pieces_moved_counter())
+        game1.set_move_counter(array_of_players[1].get_pieces_moved_counter()+array_of_players[0].get_pieces_moved_counter())
         print("Current move counter is " + str(game1.get_move_counter()))
         print("Player " + str(turn_counter) + " Token counter is " + str(array_of_players[turn_counter].get_pieces_counter()))
         game1.set_turn_counter(game1.get_turn_counter()+1)
