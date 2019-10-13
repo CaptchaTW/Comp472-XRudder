@@ -16,7 +16,6 @@ class Player:
         row, column = Player.translate(column, row)
         if self.get_pieces_counter() != 15:
             if self.board_input_checker(game, column, row):
-                print("hi")
                 if game.board[row][column] == " ":
                     game.board[row][column] = self.__pieces_symbol
                     self.__pieces_counter += 1
