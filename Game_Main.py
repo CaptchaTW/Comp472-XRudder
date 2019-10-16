@@ -11,6 +11,7 @@ def main():
     player2 = Player("O")
     game1.initialize()
     array_of_players = [player1, player2]
+    # Game loop, continuous until draw or winner
     while game1.get_move_counter() != 30 or player1.get_pieces_counter() != 15 or player2.get_pieces_counter() != 15:
         turn_counter = (game1.get_turn_counter()) % 2
         print("Player " + str(turn_counter+1) + " turn")

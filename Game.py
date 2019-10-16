@@ -114,6 +114,7 @@ class Game:
         return False
 
     def check_move_winning(self,player, column, row):
+        # check for player removing a cross out on a X
         row,column = player.translate(column,row)
         if player.board_input_checker(self, column, row - 1) and player.board_input_checker(self, column - 2, row - 1) \
                 and player.board_input_checker(self, column , row+1) and player.board_input_checker(self, column - 2,
