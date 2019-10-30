@@ -154,8 +154,9 @@ class Game:
         
         return score
 
-    def minimax_function(self, array_player):
-        print(self.__turn_counter%2)
+    def minimax_function(self, array_player, depth):
+        global score1
+        score1 =0
         score = 0
         column_holder = None
         row_holder = None
@@ -165,18 +166,28 @@ class Game:
                 if array_player[self.__turn_counter%2].put_piece(self,columns, rows) == True:
                     array_player[self.__turn_counter % 2].set_pieces_counter(
                         array_player[self.__turn_counter % 2].get_pieces_counter() - 1)
-                    if self.__turn_counter%2 == self.__AI_turn:
-                        if score < self.scoring(array_player, columns, rows):
-                            print("yes")
-                            column_holder, row_holder = columns, rows
-                            score = self.scoring(array_player,columns,rows)
+                    if depth !=0:
+                        column_holder1,row_holder1, score1 = self.minimax_function(array_player,depth-1)
+                        if self.__turn_counter%2 == self.__AI_turn:
+                            if score < self.scoring(array_player, columns, rows):
+                                column_holder, row_holder = columns, rows
+                                score = self.scoring(array_player,columns,rows)
+                        else:
+                            if score > self.scoring(array_player, columns, rows):
+                                column_holder, row_holder = columns, rows
+                                score = self.scoring(array_player,columns,rows)
                     else:
-                        if score > self.scoring(array_player, columns, rows):
-                            print("yes")
-                            column_holder, row_holder = columns, rows
-                            score = self.scoring(array_player,columns,rows)
+                        if self.__turn_counter%2 == self.__AI_turn:
+                            if score < score1:
+                                column_holder, row_holder = columns, rows
+                                score = score1
+                        else:
+                            if score > score1:
+                                column_holder, row_holder = columns, rows
+                                score = score1
+
                 self.board = holder_board
-        return column_holder, row_holder
+        return column_holder, row_holder, score
 
 
 
