@@ -53,3 +53,6 @@ class Player:
 
     def get_player_symbol(self):
         return self.__pieces_symbol
+
+    def set_pieces_counter(self, number):
+        self.__pieces_counter = number

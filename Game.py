@@ -8,7 +8,7 @@ class Game:
     __columns = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L']
     __move_counter = 0
     __turn_counter = 0
-
+    __AI_turn = 0
     def initialize(self):
         self.board = np.zeros((10, 12), dtype=str)
         for i in range(0,len(self.board)):
@@ -114,7 +114,6 @@ class Game:
         return False
 
     def check_move_winning(self,player, column, row):
-        # check for player removing a cross out on a X
         row,column = player.translate(column,row)
         if player.board_input_checker(self, column, row - 1) and player.board_input_checker(self, column - 2, row - 1) \
                 and player.board_input_checker(self, column , row+1) and player.board_input_checker(self, column - 2,
@@ -144,7 +143,40 @@ class Game:
                                     return True
         return False
 
+    def scoring(self,array_player, columns, rows):
+        score = 0
+        if self.check_winning_conditions(array_player[self.__turn_counter%2], columns, rows) == True:
+            if self.__turn_counter%2 == self.__AI_turn:
+                score = 1000
+            else:
+                score = -1000
+            return score
+        
+        return score
 
+    def minimax_function(self, array_player):
+        print(self.__turn_counter%2)
+        score = 0
+        column_holder = None
+        row_holder = None
+        for columns in self.__columns:
+            for rows in self.__rows:
+                holder_board = np.copy(self.board)
+                if array_player[self.__turn_counter%2].put_piece(self,columns, rows) == True:
+                    array_player[self.__turn_counter % 2].set_pieces_counter(
+                        array_player[self.__turn_counter % 2].get_pieces_counter() - 1)
+                    if self.__turn_counter%2 == self.__AI_turn:
+                        if score < self.scoring(array_player, columns, rows):
+                            print("yes")
+                            column_holder, row_holder = columns, rows
+                            score = self.scoring(array_player,columns,rows)
+                    else:
+                        if score > self.scoring(array_player, columns, rows):
+                            print("yes")
+                            column_holder, row_holder = columns, rows
+                            score = self.scoring(array_player,columns,rows)
+                self.board = holder_board
+        return column_holder, row_holder
 
 
 
