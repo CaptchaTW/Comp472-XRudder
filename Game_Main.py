@@ -20,7 +20,7 @@ def main():
             game1.set_turn_counter(game1.get_turn_counter() + 1)
             continue
         while True:
-            print(game1.minimax_function(array_of_players,1))
+            print(game1.minimax_function(array_of_players,2))
             move_choice = input("Choose your next move: \n1-Place a token \n"
                   "2-Move a token\n ")
             if move_choice == "1":
