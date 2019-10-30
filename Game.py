@@ -167,7 +167,9 @@ class Game:
                     array_player[self.__turn_counter % 2].set_pieces_counter(
                         array_player[self.__turn_counter % 2].get_pieces_counter() - 1)
                     if depth !=0:
+                        self.__turn_counter+=1
                         column_holder1,row_holder1, score1 = self.minimax_function(array_player,depth-1)
+                        self.__turn_counter-=1
                         if self.__turn_counter%2 == self.__AI_turn:
                             if score < self.scoring(array_player, columns, rows):
                                 column_holder, row_holder = columns, rows
