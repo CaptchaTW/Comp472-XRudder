@@ -9,6 +9,7 @@ class Game:
     __move_counter = 0
     __turn_counter = 0
     __AI_turn = 0
+
     def initialize(self):
         self.board = np.zeros((10, 12), dtype=str)
         for i in range(0,len(self.board)):
@@ -144,20 +145,56 @@ class Game:
         return False
 
     def scoring(self,array_player, columns, rows):
-        score = 0
+        global score2
+        score2 = 0
         if self.check_winning_conditions(array_player[self.__turn_counter%2], columns, rows) == True:
             if self.__turn_counter%2 == self.__AI_turn:
-                score = 1000
+                score2 = 1000
             else:
-                score = -1000
-            return score
-        
-        return score
+                score2 = -1000
+            return score2
+
+        for i in range(10):
+            for j in range(8):
+                counter_AI = 0
+                counter_human = 0
+                if self.board[j][i] == array_player[self.__turn_counter%2].get_player_symbol():
+                    counter_AI += 1
+                elif self.board[j][i] == array_player[(self.__turn_counter+1)%2].get_player_symbol():
+                    counter_human += 1
+                if self.board[j][i+2] == array_player[self.__turn_counter % 2].get_player_symbol():
+                    counter_AI += 1
+                elif self.board[j][i+2] == array_player[(self.__turn_counter + 1) % 2].get_player_symbol():
+                    counter_human += 1
+                if self.board[j+1][i+1] == array_player[self.__turn_counter % 2].get_player_symbol():
+                    counter_AI += 1
+                elif self.board[j+1][i+1] == array_player[(self.__turn_counter + 1) % 2].get_player_symbol():
+                    counter_human += 1
+                if self.board[j+2][i] == array_player[self.__turn_counter % 2].get_player_symbol():
+                    counter_AI += 1
+                elif self.board[j+2][i] == array_player[(self.__turn_counter + 1) % 2].get_player_symbol():
+                    counter_human += 1
+                if self.board[j+2][i+2] == array_player[self.__turn_counter % 2].get_player_symbol():
+                    counter_AI += 1
+                elif self.board[j+2][i+2] == array_player[(self.__turn_counter + 1) % 2].get_player_symbol():
+                    counter_human += 1
+                if counter_human == 0:
+                    score2 += counter_AI
+                if counter_AI == 0:
+                    score2 -= counter_human
+        if self.__turn_counter%2 != self.__AI_turn:
+            score2 = -score2
+        return score2
+
 
     def minimax_function(self, array_player, depth):
         global score1
         score1 =0
-        score = 0
+        global score
+        if self.__turn_counter%2 == self.__AI_turn:
+            score = -10001
+        else:
+            score = +10001
         column_holder = None
         row_holder = None
         for columns in self.__columns:
@@ -166,27 +203,32 @@ class Game:
                 if array_player[self.__turn_counter%2].put_piece(self,columns, rows) == True:
                     array_player[self.__turn_counter % 2].set_pieces_counter(
                         array_player[self.__turn_counter % 2].get_pieces_counter() - 1)
-                    if depth !=0:
+                    if depth !=1:
+                        self.__turn_counter+=1
                         column_holder1,row_holder1, score1 = self.minimax_function(array_player,depth-1)
+                        self.__turn_counter-=1
+                        if self.__turn_counter%2 == self.__AI_turn:
+                            if self.__turn_counter % 2 == self.__AI_turn:
+                                if score < score1:
+                                    column_holder, row_holder = columns, rows
+                                    score = score1
+                            else:
+                                if score > score1:
+                                    column_holder, row_holder = columns, rows
+                                    score = score1
+                    else:
+
                         if self.__turn_counter%2 == self.__AI_turn:
                             if score < self.scoring(array_player, columns, rows):
                                 column_holder, row_holder = columns, rows
-                                score = self.scoring(array_player,columns,rows)
+                                score = self.scoring(array_player, columns, rows)
                         else:
                             if score > self.scoring(array_player, columns, rows):
                                 column_holder, row_holder = columns, rows
-                                score = self.scoring(array_player,columns,rows)
-                    else:
-                        if self.__turn_counter%2 == self.__AI_turn:
-                            if score < score1:
-                                column_holder, row_holder = columns, rows
-                                score = score1
-                        else:
-                            if score > score1:
-                                column_holder, row_holder = columns, rows
-                                score = score1
+                                score = self.scoring(array_player, columns, rows)
 
                 self.board = holder_board
+
         return column_holder, row_holder, score
 
 
