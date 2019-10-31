@@ -1,6 +1,6 @@
 import numpy as np
 from Player import Player
-
+import math
 
 class Game:
     board = None
@@ -179,9 +179,11 @@ class Game:
                 elif self.board[j+2][i+2] == array_player[(self.__turn_counter + 1) % 2].get_player_symbol():
                     counter_human += 1
                 if counter_human == 0:
-                    score2 += counter_AI
+                    score2 += math.pow(counter_AI,3)
+
                 if counter_AI == 0:
-                    score2 -= counter_human
+                    score2 -= math.pow(counter_human,3)
+
         if self.__turn_counter%2 != self.__AI_turn:
             score2 = -score2
         return score2
