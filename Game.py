@@ -190,7 +190,7 @@ class Game:
     def minimax_function(self, array_player, depth):
         global score1
         score1 =0
-        global score
+        score = None
         if self.__turn_counter%2 == self.__AI_turn:
             score = -10001
         else:
@@ -207,8 +207,10 @@ class Game:
                         self.__turn_counter+=1
                         column_holder1,row_holder1, score1 = self.minimax_function(array_player,depth-1)
                         self.__turn_counter-=1
+                        print(score, score1)
                         if self.__turn_counter%2 == self.__AI_turn:
                             if score < score1:
+                                print(columns,rows)
                                 column_holder, row_holder = columns, rows
                                 score = score1
                         else:
