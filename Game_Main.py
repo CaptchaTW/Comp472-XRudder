@@ -11,6 +11,10 @@ def main():
     player2 = Player("O")
     game1.initialize()
     array_of_players = [player1, player2]
+    turn  = None
+    while turn !=1 or turn !=2:
+        turn = input("AI is player 1 or 2?")
+    game1.set_AI_turn(turn)
     # Game loop, continuous until draw or winner
     while game1.get_move_counter() != 30 or player1.get_pieces_counter() != 15 or player2.get_pieces_counter() != 15:
         turn_counter = (game1.get_turn_counter()) % 2
@@ -19,6 +23,7 @@ def main():
             print("No more options left")
             game1.set_turn_counter(game1.get_turn_counter() + 1)
             continue
+
         while True:
             print(game1.minimax_function(array_of_players,2))
             move_choice = input("Choose your next move: \n1-Place a token \n"

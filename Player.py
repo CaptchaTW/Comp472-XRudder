@@ -56,3 +56,6 @@ class Player:
 
     def set_pieces_counter(self, number):
         self.__pieces_counter = number
+
+    def set_pieces_moved_counter(self, number):
+        self.__pieces_moved_counter = number
