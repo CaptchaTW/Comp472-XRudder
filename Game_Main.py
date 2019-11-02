@@ -26,8 +26,9 @@ def main():
 
         while True:
             if game1.get_turn_counter()%2 == game1.get_AI_turn():
-                column_holder, row_holder,move_column_holder,move_row_holder, score,movetype=game1.minimax_function(array_of_players,1)
-
+                # sys.stdout = open(os.devnull, 'w')
+                column_holder, row_holder,move_column_holder,move_row_holder, score,movetype=game1.minimax_function(array_of_players,2)
+                # sys.stdout = sys.__stdout__
                 if movetype =="Put":
                     array_of_players[turn_counter].put_piece(game1,column_holder,row_holder)
                     print("Put token " +column_holder+str(row_holder))
