@@ -158,32 +158,31 @@ class Game:
             for j in range(8):
                 counter_AI = 0
                 counter_human = 0
-                if self.board[j][i] == array_player[turn_counter_].get_player_symbol():
+                symbol = array_player[turn_counter_].get_player_symbol()
+                if self.board[j][i] == symbol:
                     counter_AI += 1
                 elif self.board[j][i] == array_player[(self.__turn_counter+1)%2].get_player_symbol():
                     counter_human += 1
-                if self.board[j][i+2] == array_player[turn_counter_].get_player_symbol():
+                if self.board[j][i+2] == symbol:
                     counter_AI += 1
                 elif self.board[j][i+2] == array_player[(self.__turn_counter + 1) % 2].get_player_symbol():
                     counter_human += 1
-                if self.board[j+1][i+1] == array_player[turn_counter_].get_player_symbol():
+                if self.board[j+1][i+1] == symbol:
                     counter_AI += 1
                 elif self.board[j+1][i+1] == array_player[(self.__turn_counter + 1) % 2].get_player_symbol():
                     counter_human += 1
-                if self.board[j+2][i] == array_player[turn_counter_].get_player_symbol():
+                if self.board[j+2][i] == symbol:
                     counter_AI += 1
                 elif self.board[j+2][i] == array_player[(self.__turn_counter + 1) % 2].get_player_symbol():
                     counter_human += 1
-                if self.board[j+2][i+2] == array_player[turn_counter_].get_player_symbol():
+                if self.board[j+2][i+2] == symbol:
                     counter_AI += 1
                 elif self.board[j+2][i+2] == array_player[(self.__turn_counter + 1) % 2].get_player_symbol():
                     counter_human += 1
                 if counter_human == 0:
                     score2 += math.pow(counter_AI,3)
-
                 if counter_AI == 0:
                     score2 -= math.pow(counter_human,3)
-
         if turn_counter_ != self.__AI_turn:
             score2 = -score2
         return score2
@@ -213,7 +212,6 @@ class Game:
                         self.__turn_counter+=1
                         column_holder1,row_holder1,new_column_holder,new_row_holder,score1,movetype1= self.minimax_function(array_player,depth-1)
                         self.__turn_counter-=1
-                        print(score, score1)
                         if turn_counter_ == self.__AI_turn:
                             if score < score1:
                                 print(columns,rows)
