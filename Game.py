@@ -179,6 +179,8 @@ class Game:
                     counter_AI += 1
                 elif self.board[j+2][i+2] == array_player[(self.__turn_counter + 1) % 2].get_player_symbol():
                     counter_human += 1
+                if self.board[j+1][i]==array_player[(self.__turn_counter + 1) % 2].get_player_symbol() and self.board[j+1][i+2]==array_player[(self.__turn_counter + 1) % 2].get_player_symbol():
+                    counter_human+=1
                 if counter_human == 0:
                     score2 += math.pow(counter_AI,3)
                 if counter_AI == 0:
