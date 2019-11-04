@@ -400,7 +400,6 @@ class Game:
                         if array_player[turn_counter_].move_piece(self, columns, rows, chr(ord(columns) + 1), rows - 1):
                             array_player[turn_counter_].set_pieces_moved_counter(
                                 array_player[turn_counter_].get_pieces_moved_counter() - 1)
-                            self.board = holder_board
                             if depth != 1:
                                 self.__turn_counter += 1
                                 column_holder1, row_holder1, new_column_holder1, new_row_holder1, score1,movetype = self.minimax_function(
