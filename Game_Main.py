@@ -30,7 +30,7 @@ def main():
         while True:
             if game1.get_turn_counter()%2 == game1.get_AI_turn():
                 # sys.stdout = open(os.devnull, 'w')
-                column_holder, row_holder,move_column_holder,move_row_holder, score,movetype=game1.minimax_function(array_of_players,int(depth))
+                column_holder, row_holder,move_column_holder,move_row_holder, score,movetype=game1.minimax_function(array_of_players,int(depth),-1001)
                 # sys.stdout = sys.__stdout__
                 if movetype =="Put":
                     array_of_players[turn_counter].put_piece(game1,column_holder,row_holder)
