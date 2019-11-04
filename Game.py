@@ -244,7 +244,7 @@ class Game:
                                 column_holder, row_holder = columns, rows
                                 score = self.scoring(array_player, columns, rows)
                                 movetype = "Put"
-                                if alpha > score:
+                                if alpha >= score:
                                     return column_holder, row_holder, move_column_holder, move_row_holder, score, movetype
 
                 self.board = holder_board
@@ -263,7 +263,6 @@ class Game:
                                         column_holder, row_holder,move_column_holder,move_row_holder = columns, rows,chr(ord(columns)-1),rows-1
                                         score = score1
                                         alpha = score
-
                                         movetype = "Move"
                                 else:
                                     if score > score1:
@@ -281,7 +280,7 @@ class Game:
                                         column_holder, row_holder,move_column_holder,move_row_holder = columns, rows,chr(ord(columns)-1),rows-1
                                         score = self.scoring(array_player, chr(ord(columns)-1), rows-1)
                                         movetype = "Move"
-                                        if alpha > score:
+                                        if alpha >=score:
                                             return column_holder, row_holder, move_column_holder, move_row_holder, score, movetype
                         self.board = holder_board
                         holder_board = self.board.copy()
@@ -314,7 +313,7 @@ class Game:
                                         column_holder, row_holder,move_column_holder,move_row_holder = columns, rows,chr(ord(columns)-1),rows
                                         score = self.scoring(array_player, chr(ord(columns)-1), rows)
                                         movetype = "Move"
-                                        if alpha > score:
+                                        if alpha >= score:
                                             return column_holder, row_holder, move_column_holder, move_row_holder, score, movetype
                         self.board = holder_board
                         holder_board = self.board.copy()
@@ -347,7 +346,7 @@ class Game:
                                         column_holder, row_holder,move_column_holder,move_row_holder = columns, rows,chr(ord(columns)-1),rows+1
                                         score = self.scoring(array_player, chr(ord(columns)-1), rows+1)
                                         movetype = "Move"
-                                        if alpha > score:
+                                        if alpha >=score:
                                             return column_holder, row_holder, move_column_holder, move_row_holder, score, movetype
                         self.board = holder_board
                         holder_board = self.board.copy()
@@ -381,7 +380,7 @@ class Game:
                                         column_holder, row_holder, move_column_holder, move_row_holder = columns, rows, columns , rows - 1
                                         score = self.scoring(array_player, columns , rows - 1)
                                         movetype = "Move"
-                                        if alpha > score:
+                                        if alpha >= score:
                                             return column_holder, row_holder, move_column_holder, move_row_holder, score, movetype
                         self.board = holder_board
                         holder_board = self.board.copy()
@@ -415,7 +414,7 @@ class Game:
                                         column_holder, row_holder, move_column_holder, move_row_holder = columns, rows, columns, rows + 1
                                         score = self.scoring(array_player, columns , rows + 1)
                                         movetype = "Move"
-                                        if alpha > score:
+                                        if alpha >= score:
                                             return column_holder, row_holder, move_column_holder, move_row_holder, score, movetype
                         self.board = holder_board
                         holder_board = self.board.copy()
@@ -450,7 +449,7 @@ class Game:
                                         column_holder, row_holder, move_column_holder, move_row_holder = columns, rows, chr(ord(columns)+1), rows - 1
                                         score = self.scoring(array_player, chr(ord(columns)+1), rows - 1)
                                         movetype = "Move"
-                                        if alpha > score:
+                                        if alpha >= score:
                                             return column_holder, row_holder, move_column_holder, move_row_holder, score, movetype
                         self.board = holder_board
                         holder_board = self.board.copy()
@@ -484,7 +483,7 @@ class Game:
                                         column_holder, row_holder, move_column_holder, move_row_holder = columns, rows, chr(ord(columns)+1), rows
                                         score = self.scoring(array_player, chr(ord(columns)+1), rows )
                                         movetype = "Move"
-                                        if alpha > score:
+                                        if alpha >= score:
                                             return column_holder, row_holder, move_column_holder, move_row_holder, score, movetype
                         self.board = holder_board
                         holder_board = self.board.copy()
@@ -518,7 +517,7 @@ class Game:
                                         column_holder, row_holder, move_column_holder, move_row_holder = columns, rows, chr(ord(columns)+1), rows + 1
                                         score = self.scoring(array_player, chr(ord(columns)+1), rows + 1)
                                         movetype = "Move"
-                                        if alpha > score:
+                                        if alpha >= score:
                                             return column_holder, row_holder, move_column_holder, move_row_holder, score, movetype
                         self.board = holder_board
         return column_holder, row_holder,move_column_holder,move_row_holder, score,movetype
