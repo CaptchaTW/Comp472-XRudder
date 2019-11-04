@@ -12,9 +12,12 @@ def main():
     game1.initialize()
     array_of_players = [player1, player2]
     turn  = None
+    depth = None
     while turn !="1" and turn !="2":
         turn = input("AI is player 1 or 2?")
     game1.set_AI_turn(int(turn)-1)
+    while depth != "1" and depth != "2":
+        depth = input("Minimax Depth is  1 or 2?")
     # Game loop, continuous until draw or winner
     while game1.get_move_counter() != 30 or player1.get_pieces_counter() != 15 or player2.get_pieces_counter() != 15:
         turn_counter = (game1.get_turn_counter()) % 2
@@ -27,7 +30,7 @@ def main():
         while True:
             if game1.get_turn_counter()%2 == game1.get_AI_turn():
                 # sys.stdout = open(os.devnull, 'w')
-                column_holder, row_holder,move_column_holder,move_row_holder, score,movetype=game1.minimax_function(array_of_players,2)
+                column_holder, row_holder,move_column_holder,move_row_holder, score,movetype=game1.minimax_function(array_of_players,int(depth))
                 # sys.stdout = sys.__stdout__
                 if movetype =="Put":
                     array_of_players[turn_counter].put_piece(game1,column_holder,row_holder)

@@ -143,7 +143,9 @@ class Game:
                                         != player.get_player_symbol():
                                     return True
         return False
-
+    # heuristic scoring of the state of the game
+    # the idea is to divide the board into sub-matrices then using a custom heuristic for each sub matrices
+    # to score them and add them up for the total score of the entire board
     def scoring(self,array_player, columns, rows):
         score2 = 0
         turn_counter_ = self.__turn_counter % 2
@@ -152,6 +154,9 @@ class Game:
                 score2 = 1000
             else:
                 score2 = -1000
+            return score2
+        if self.check_winning_conditions(array_player[turn_counter_], columns, rows):
+            score2 = -1000
             return score2
 
         for i in range(10):
@@ -189,7 +194,7 @@ class Game:
             score2 = -score2
         return score2
 
-
+    # minimax functions, goes through every single possible node option, scores them and keeps them if it is a better option
     def minimax_function(self, array_player, depth):
         global score1
         score1 = 0
@@ -497,6 +502,7 @@ class Game:
 
     def set_AI_turn(self,number):
         self.__AI_turn = number
+
     def get_AI_turn(self):
         return self.__AI_turn
 
