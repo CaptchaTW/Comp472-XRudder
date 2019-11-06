@@ -187,9 +187,9 @@ class Game:
                 if self.board[j+1][i]==array_player[(self.__turn_counter + 1) % 2].get_player_symbol() and self.board[j+1][i+2]==array_player[(self.__turn_counter + 1) % 2].get_player_symbol():
                     counter_human+=1
                 if counter_human == 0:
-                    score2 += math.pow(counter_AI,3)
+                    score2 += math.pow(counter_AI,4)
                 if counter_AI == 0:
-                    score2 -= math.pow(counter_human,3)
+                    score2 -= math.pow(counter_human,4)
         if turn_counter_ != self.__AI_turn:
             score2 = -score2
         return score2
@@ -218,7 +218,7 @@ class Game:
                         array_player[turn_counter_].get_pieces_counter() - 1)
                     if depth !=1:
                         self.__turn_counter+=1
-                        column_holder1,row_holder1,new_column_holder,new_row_holder,score1,movetype= self.minimax_function(array_player,depth-1,alpha)
+                        column_holder1,row_holder1,new_column_holder,new_row_holder,score1,movetype1= self.minimax_function(array_player,depth-1,alpha)
                         self.__turn_counter-=1
                         if turn_counter_ == self.__AI_turn:
                             if score < score1:
@@ -256,7 +256,7 @@ class Game:
                                 array_player[turn_counter_].get_pieces_moved_counter() - 1)
                             if depth != 1:
                                 self.__turn_counter += 1
-                                column_holder1, row_holder1,new_column_holder1,new_row_holder1,score1,movetype = self.minimax_function(array_player, depth - 1,alpha)
+                                column_holder1, row_holder1,new_column_holder1,new_row_holder1,score1,movetype1 = self.minimax_function(array_player, depth - 1,alpha)
                                 self.__turn_counter -= 1
                                 if turn_counter_ == self.__AI_turn:
                                     if score < score1:
@@ -289,7 +289,7 @@ class Game:
                                 array_player[turn_counter_].get_pieces_moved_counter() - 1)
                             if depth != 1:
                                 self.__turn_counter += 1
-                                column_holder1, row_holder1,new_column_holder1,new_row_holder1,score1,movetype = self.minimax_function(array_player, depth - 1,alpha)
+                                column_holder1, row_holder1,new_column_holder1,new_row_holder1,score1,movetype1 = self.minimax_function(array_player, depth - 1,alpha)
                                 self.__turn_counter -= 1
                                 if turn_counter_ == self.__AI_turn:
                                     if score < score1:
@@ -322,7 +322,7 @@ class Game:
                                 array_player[turn_counter_].get_pieces_moved_counter() - 1)
                             if depth != 1:
                                 self.__turn_counter += 1
-                                column_holder1, row_holder1,new_column_holder1,new_row_holder1,score1,movetype = self.minimax_function(array_player, depth - 1,alpha)
+                                column_holder1, row_holder1,new_column_holder1,new_row_holder1,score1,movetype1 = self.minimax_function(array_player, depth - 1,alpha)
                                 self.__turn_counter -= 1
                                 if turn_counter_ == self.__AI_turn:
                                     if score < score1:
@@ -355,7 +355,7 @@ class Game:
                                 array_player[turn_counter_].get_pieces_moved_counter() - 1)
                             if depth != 1:
                                 self.__turn_counter += 1
-                                column_holder1, row_holder1, new_column_holder1, new_row_holder1, score1,movetype = self.minimax_function(
+                                column_holder1, row_holder1, new_column_holder1, new_row_holder1, score1,movetype1 = self.minimax_function(
                                     array_player, depth - 1,alpha)
                                 self.__turn_counter -= 1
                                 if turn_counter_ == self.__AI_turn:
@@ -389,7 +389,7 @@ class Game:
                                 array_player[turn_counter_].get_pieces_moved_counter() - 1)
                             if depth != 1:
                                 self.__turn_counter += 1
-                                column_holder1, row_holder1, new_column_holder1, new_row_holder1, score1,movetype = self.minimax_function(
+                                column_holder1, row_holder1, new_column_holder1, new_row_holder1, score1,movetype1 = self.minimax_function(
                                     array_player, depth - 1,alpha)
                                 self.__turn_counter -= 1
                                 if turn_counter_ == self.__AI_turn:
@@ -423,7 +423,7 @@ class Game:
                                 array_player[turn_counter_].get_pieces_moved_counter() - 1)
                             if depth != 1:
                                 self.__turn_counter += 1
-                                column_holder1, row_holder1, new_column_holder1, new_row_holder1, score1,movetype = self.minimax_function(
+                                column_holder1, row_holder1, new_column_holder1, new_row_holder1, score1,movetype1 = self.minimax_function(
                                     array_player, depth - 1,alpha)
                                 self.__turn_counter -= 1
                                 if turn_counter_ == self.__AI_turn:
@@ -458,7 +458,7 @@ class Game:
                                 array_player[turn_counter_].get_pieces_moved_counter() - 1)
                             if depth != 1:
                                 self.__turn_counter += 1
-                                column_holder1, row_holder1, new_column_holder1, new_row_holder1, score1,movetype = self.minimax_function(
+                                column_holder1, row_holder1, new_column_holder1, new_row_holder1, score1,movetype1 = self.minimax_function(
                                     array_player, depth - 1,alpha)
                                 self.__turn_counter -= 1
                                 if turn_counter_ == self.__AI_turn:
@@ -492,7 +492,7 @@ class Game:
                                 array_player[turn_counter_].get_pieces_moved_counter() - 1)
                             if depth != 1:
                                 self.__turn_counter += 1
-                                column_holder1, row_holder1, new_column_holder1, new_row_holder1, score1,movetype = self.minimax_function(
+                                column_holder1, row_holder1, new_column_holder1, new_row_holder1, score1,movetype1 = self.minimax_function(
                                     array_player, depth - 1,alpha)
                                 self.__turn_counter -= 1
                                 if turn_counter_ == self.__AI_turn:
