@@ -190,6 +190,7 @@ class Game:
                     score2 += math.pow(counter_AI,4)
                 if counter_AI == 0:
                     score2 -= math.pow(counter_human,4)
+
         if turn_counter_ != self.__AI_turn:
             score2 = -score2
         return score2
