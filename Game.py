@@ -151,18 +151,20 @@ class Game:
         turn_counter_ = self.__turn_counter % 2
         if self.check_winning_conditions(array_player[turn_counter_], columns, rows):
             if turn_counter_ == self.__AI_turn:
-                score2 = 1000
+                score2 = 10000
             else:
-                score2 = -1000
+                score2 = -10000
             return score2
         if self.check_winning_conditions(array_player[turn_counter_], columns, rows):
-            score2 = -1000
+            score2 = -10000
             return score2
 
         for i in range(10):
             for j in range(8):
                 counter_AI = 0
                 counter_human = 0
+                cross_AI = False
+                cross_human = False
                 symbol = array_player[turn_counter_].get_player_symbol()
                 if self.board[j][i] == symbol:
                     counter_AI += 1
@@ -185,12 +187,19 @@ class Game:
                 elif self.board[j+2][i+2] == array_player[(self.__turn_counter + 1) % 2].get_player_symbol():
                     counter_human += 1
                 if self.board[j+1][i]==array_player[(self.__turn_counter + 1) % 2].get_player_symbol() and self.board[j+1][i+2]==array_player[(self.__turn_counter + 1) % 2].get_player_symbol():
-                    counter_human+=1
-                if counter_human == 0:
-                    score2 += math.pow(counter_AI,4)
-                if counter_AI == 0:
-                    score2 -= math.pow(counter_human,4)
-
+                    cross_human=True
+                elif self.board[j + 1][i] == symbol and self.board[j + 1][i + 2] == symbol:
+                    cross_AI = True
+                if counter_human == 0 and not cross_human:
+                    score2 += math.pow(counter_AI,3)
+                if counter_AI == 0 and not cross_AI:
+                    score2 -= math.pow(counter_human,3)
+                if counter_AI == 5:
+                    score2+=10000
+                if counter_human ==5:
+                    score2 -= 10000
+        nb_tokens =array_player[turn_counter_].get_pieces_counter()- array_player[(self.__turn_counter + 1) % 2].get_pieces_counter()
+        score2+=nb_tokens
         if turn_counter_ != self.__AI_turn:
             score2 = -score2
         return score2
